@@ -26,21 +26,12 @@ def playGame(wordList):
     lastHand = {}
     while game:
         choice = input('Enter n to deal a new hand, r to replay the last hand, or e to end game: ')
-        print()
+        print()   
         
-        
-    
         while lastHand == {} and choice == 'r':
             print('You have not played a hand yet. Please play a new hand first!')
             choice = input('Enter n to deal a new hand, r to replay the last hand, or e to end game: ')
-            
         
-        
-        
-        
-        if choice == 'r' and lastHand == {}:
-            print('You have not played a hand yet. Please play a new hand first!')
-            choice = input('Enter n to deal a new hand, r to replay the last hand, or e to end game: ')
         if choice == 'r' or choice == 'n':
             player = input('Enter u to have yourself play, c to have the computer play: ')
             print()
@@ -55,26 +46,16 @@ def playGame(wordList):
         
         if choice == 'r':
             if player == 'u':
-                if lastHand == {}:
-                    print('You have not played a hand yet. Please play a new hand first!')
-                    print()
-                else:
-                    playHand(lastHand,wordList,HAND_SIZE)
+                playHand(lastHand,wordList,HAND_SIZE)
             else:
-                if lastHand == {}:
-                    print('You have not played a hand yet. Please play a new hand first!')
-                    print()
-                else:
-                    compPlayHand(lastHand,wordList,HAND_SIZE)
-        
+                compPlayHand(lastHand,wordList,HAND_SIZE)
+                
         elif choice == 'n':
+            hand = dealHand(HAND_SIZE)
+            lastHand = hand.copy()
             if player == 'u':
-                hand = dealHand(HAND_SIZE)
-                lastHand = hand.copy()
                 playHand(hand,wordList,HAND_SIZE)
             else:
-                hand = dealHand(HAND_SIZE)
-                lastHand = hand.copy()
                 compPlayHand(hand,wordList,HAND_SIZE)
         elif choice == 'e':
             game = False
